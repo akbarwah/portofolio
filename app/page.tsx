@@ -258,8 +258,6 @@ export default function Portfolio() {
             {/* FOTO PROFIL */}
             <div className="mb-8 flex justify-center">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-xl overflow-hidden bg-slate-200 relative">
-                {/* SAYA KEMBALIKAN KE LINK GOOGLE DRIVE SEMENTARA. 
-                    JIKA SUDAH ADA LINK POSTIMAGES, GANTI BAGIAN 'src' DI BAWAH INI */}
                 <img
                   src="https://i.postimg.cc/RVCYBbpn/DSC07063-(4)-(1).jpg"
                   alt="Akbar Wahyu Adi"
@@ -347,8 +345,8 @@ export default function Portfolio() {
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: false }} variants={fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Psychology-Driven HR Solutions</h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Building high-performing teams by combining behavioral insights with strategic operations.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">How I Can Help</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">              Partnering to align the right talent with the right roles for growth.</p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => {
