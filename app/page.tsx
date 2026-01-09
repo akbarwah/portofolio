@@ -235,7 +235,7 @@ export default function Portfolio() {
             <div className="mb-8 flex justify-center">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-xl overflow-hidden bg-slate-200 relative">
                 <img
-                  src="https://drive.google.com/uc?export=view&id=1dPfR8PjCtJdvlZx0DRJ-SAW82Di5m3rz"
+                  src="https://i.postimg.cc/k49jgdt8/DSC07063-(4)-(1).jpg"
                   alt="Akbar Wahyu Adi Pratama"
                   className="w-full h-full object-cover"
                   style={{
