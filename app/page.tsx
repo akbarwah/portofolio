@@ -61,14 +61,38 @@ export default function Portfolio() {
     message: "",
   });
   
+  // --- LOGIKA BARU: MENGIRIM KE FORMSPREE ---
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: "", email: "", message: "" });
-    setTimeout(() => setIsSubmitted(false), 5000);
+
+    try {
+      // Endpoint Formspree Anda
+      const response = await fetch("https://formspree.io/f/xojjajdr", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", message: "" }); // Reset form
+        setTimeout(() => setIsSubmitted(false), 5000); // Reset tombol setelah 5 detik
+      } else {
+        setIsSubmitting(false);
+        alert("Ada masalah saat mengirim pesan. Silakan coba lagi.");
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+      alert("Terjadi kesalahan koneksi.");
+    }
   };
 
   // --- DATA FROM CV ---
@@ -234,13 +258,15 @@ export default function Portfolio() {
             {/* FOTO PROFIL */}
             <div className="mb-8 flex justify-center">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-xl overflow-hidden bg-slate-200 relative">
+                {/* SAYA KEMBALIKAN KE LINK GOOGLE DRIVE SEMENTARA. 
+                    JIKA SUDAH ADA LINK POSTIMAGES, GANTI BAGIAN 'src' DI BAWAH INI */}
                 <img
-                  src="https://i.postimg.cc/k49jgdt8/DSC07063-(4)-(1).jpg"
+                  src="https://drive.google.com/uc?export=view&id=1dPfR8PjCtJdvlZx0DRJ-SAW82Di5m3rz"
                   alt="Akbar Wahyu Adi Pratama"
                   className="w-full h-full object-cover"
                   style={{
                     transform: "scale(1.6)",
-                    objectPosition: "50% 35%",
+                    objectPosition: "20% 35%",
                   }}
                 />
               </div>
@@ -265,7 +291,7 @@ export default function Portfolio() {
               </a>
               
               <a
-                // GANTI ID DI BAWAH DENGAN ID FILE PDF DI GOOGLE DRIVE ANDA
+                // ID PDF CV
                 href="https://drive.google.com/uc?export=download&id=1Xy8R8PjCtJdvlZx0DRJ-SAW82Di5m3rz" 
                 target="_blank"
                 rel="noopener noreferrer"
@@ -441,12 +467,23 @@ export default function Portfolio() {
                 })}
               </div>
             </motion.div>
+
+            {/* FORM SECTION SUDAH DIUPDATE DENGAN LOGIKA BARU */}
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: false }} className="bg-white p-8 md:p-10 rounded-3xl text-slate-900 shadow-2xl">
               <h3 className="text-2xl font-bold mb-6 text-slate-900">Send Me a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div><label className="block text-sm font-semibold text-slate-700 mb-2">Your Name</label><input type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required /></div>
-                <div><label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label><input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required /></div>
-                <div><label className="block text-sm font-semibold text-slate-700 mb-2">Message</label><textarea rows={4} value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none resize-none transition-all" required /></div>
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Your Name</label>
+                  <input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                  <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+                  <textarea rows={4} name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none resize-none transition-all" required />
+                </div>
                 <button type="submit" disabled={isSubmitting || isSubmitted} className={`w-full py-4 rounded-xl font-bold text-white transition-all shadow-lg ${isSubmitted ? "bg-green-500" : "bg-slate-900 hover:bg-teal-600 hover:shadow-teal-200"}`}>{isSubmitting ? "Sending..." : isSubmitted ? "Message Sent!" : "Send Message"}</button>
               </form>
             </motion.div>
