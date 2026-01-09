@@ -240,7 +240,7 @@ export default function Portfolio() {
                   className="w-full h-full object-cover"
                   style={{
                     transform: "scale(1.6)",
-                    objectPosition: "20% 35%",
+                    objectPosition: "50% 35%",
                   }}
                 />
               </div>
