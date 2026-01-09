@@ -273,7 +273,7 @@ export default function Portfolio() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-slate-900 tracking-tight leading-tight">
-              Akbar Wahyu Adi Pratama
+              Akbar Wahyu Adi
             </h1>
 
             <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
