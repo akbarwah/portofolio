@@ -261,12 +261,12 @@ export default function Portfolio() {
                 {/* SAYA KEMBALIKAN KE LINK GOOGLE DRIVE SEMENTARA. 
                     JIKA SUDAH ADA LINK POSTIMAGES, GANTI BAGIAN 'src' DI BAWAH INI */}
                 <img
-                  src="https://drive.google.com/uc?export=view&id=1dPfR8PjCtJdvlZx0DRJ-SAW82Di5m3rz"
-                  alt="Akbar Wahyu Adi Pratama"
+                  src="https://i.postimg.cc/RVCYBbpn/DSC07063-(4)-(1).jpg"
+                  alt="Akbar Wahyu Adi"
                   className="w-full h-full object-cover"
                   style={{
                     transform: "scale(1.6)",
-                    objectPosition: "20% 35%",
+                    objectPosition: "60% 35%",
                   }}
                 />
               </div>
