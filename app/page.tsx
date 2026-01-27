@@ -16,11 +16,15 @@ import {
   ClipboardList,
   Star,
   ExternalLink,
+  Menu, // Icon untuk mobile menu
+  X,    // Icon untuk close menu
+  Hexagon, // Icon Logo Baru
 } from "lucide-react";
-import { useState } from "react";
-import { motion, Variants } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import Image from "next/image"; // Menggunakan Image Component Next.js
 
-// --- ANIMATION VARIANTS (Fixed for TypeScript) ---
+// --- ANIMATION VARIANTS ---
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
@@ -53,6 +57,8 @@ const scaleIn: Variants = {
 export default function Portfolio() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [scrolled, setScrolled] = useState(false); // State untuk Navbar
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State untuk Mobile Menu
 
   // Contact Form Logic
   const [formData, setFormData] = useState({
@@ -60,31 +66,32 @@ export default function Portfolio() {
     email: "",
     message: "",
   });
-  
-  // --- LOGIKA BARU: MENGIRIM KE FORMSPREE ---
+
+  // Handle Scroll Effect for Navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Endpoint Formspree Anda
       const response = await fetch("https://formspree.io/f/xojjajdr", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         setIsSubmitting(false);
         setIsSubmitted(true);
-        setFormData({ name: "", email: "", message: "" }); // Reset form
-        setTimeout(() => setIsSubmitted(false), 5000); // Reset tombol setelah 5 detik
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setIsSubmitted(false), 5000);
       } else {
         setIsSubmitting(false);
         alert("Ada masalah saat mengirim pesan. Silakan coba lagi.");
@@ -95,9 +102,14 @@ export default function Portfolio() {
     }
   };
 
-  // --- DATA FROM CV ---
+  // --- DATA SECTIONS ---
+  const navLinks = [
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Experience", href: "#experience" },
+    { name: "Contact", href: "#contact" },
+  ];
 
-  // Services
   const services = [
     {
       title: "Strategic Recruitment",
@@ -121,7 +133,6 @@ export default function Portfolio() {
     },
   ];
 
-  // Professional Experience
   const experiences = [
     {
       role: "HR General Affair",
@@ -183,7 +194,6 @@ export default function Portfolio() {
     },
   ];
 
-  // Education
   const education = [
     {
       degree: "Professional Program in Psychology",
@@ -198,7 +208,6 @@ export default function Portfolio() {
     },
   ];
 
-  // Training
   const trainings = [
     {
       name: "Diploma in HR Management",
@@ -225,14 +234,13 @@ export default function Portfolio() {
       url: "https://coursera.org/share/b3b3e822e0138ca13da07f158a94a977",
     },
     {
-      name: "Recruiting, Hiring, and Onboarding Employees",
+      name: "Recruiting, Hiring, & Onboarding",
       issuer: "University of Minnesota",
       year: "2023",
       url: "https://coursera.org/share/ab599e642944b509f304075cee97c6f2",
     },
   ];
 
-  // Skills
   const skills = [
     "End-to-end Recruitment",
     "Psychological Assessment",
@@ -246,26 +254,72 @@ export default function Portfolio() {
 
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-900 overflow-x-hidden selection:bg-teal-200">
+      
+      {/* --- NAVBAR --- */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-md py-4" : "bg-transparent py-6"}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+          
+          {/* Logo Baru (Hexagon) */}
+          <div className="flex items-center gap-2 cursor-default">
+            <div className="bg-teal-600 p-1.5 rounded-lg text-white shadow-sm">
+              <Hexagon size={24} strokeWidth={2.5} />
+            </div>
+            <span className="text-xl font-extrabold tracking-tight text-slate-900">
+              Akbar<span className="text-teal-600">.</span>
+            </span>
+          </div>
+          
+          {/* Desktop Menu */}
+          <div className="hidden md:flex gap-8">
+            {navLinks.map((link) => (
+              <a key={link.name} href={link.href} className="text-sm font-medium text-slate-600 hover:text-teal-600 transition-colors">
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button className="md:hidden text-slate-900" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Dropdown */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white border-b border-slate-100"
+            >
+              <div className="px-4 py-4 space-y-3">
+                 {navLinks.map((link) => (
+                  <a key={link.name} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-slate-50 px-3 py-2 rounded-lg">
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 to-slate-50">
+      <section className="relative pt-40 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 via-white to-slate-50">
         <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false }}
-            variants={fadeInUp}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             {/* FOTO PROFIL */}
             <div className="mb-8 flex justify-center">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-xl overflow-hidden bg-slate-200 relative">
-                <img
+              <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-white shadow-2xl overflow-hidden bg-slate-200 relative ring-4 ring-teal-50">
+                <Image
                   src="https://i.postimg.cc/RVCYBbpn/DSC07063-(4)-(1).jpg"
                   alt="Akbar Wahyu Adi"
-                  className="w-full h-full object-cover"
-                  style={{
-                    transform: "scale(1.6)",
-                    objectPosition: "60% 35%",
-                  }}
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: "60% 35%", transform: "scale(1.5)" }}
+                  priority
+                  unoptimized // Fix gambar
                 />
               </div>
             </div>
@@ -274,27 +328,17 @@ export default function Portfolio() {
               Akbar Wahyu Adi
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Merging{" "}
-              <span className="text-teal-600 font-bold">Psychological Insights</span> with{" "}
+            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+              Merging <span className="text-teal-600 font-bold">Psychological Insights</span> with{" "}
               <span className="text-teal-600 font-bold">Strategic HR</span> to build stronger teams and healthier workplace cultures.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                className="px-8 py-4 bg-teal-700 text-white rounded-xl font-bold hover:bg-teal-800 transition-all shadow-lg hover:shadow-teal-200/50 flex items-center justify-center gap-2"
-              >
+              <a href="#contact" className="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg hover:shadow-teal-200/50 flex items-center justify-center gap-2 transform hover:-translate-y-1">
                 <Send size={18} /> Let's Collaborate
               </a>
               
-              <a
-                // ID PDF CV
-                href="https://drive.google.com/uc?export=download&id=1Xy8R8PjCtJdvlZx0DRJ-SAW82Di5m3rz" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl font-bold hover:border-teal-400 hover:text-teal-700 hover:bg-teal-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
+              <a href="https://drive.google.com/uc?export=download&id=1Xy8R8PjCtJdvlZx0DRJ-SAW82Di5m3rz" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-white text-slate-800 border border-slate-200 rounded-xl font-bold hover:border-teal-400 hover:text-teal-700 hover:bg-teal-50 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow-md">
                 <Download size={20} /> Download CV
               </a>
             </div>
@@ -303,20 +347,13 @@ export default function Portfolio() {
       </section>
 
       {/* --- ABOUT ME --- */}
-      <section className="py-24 bg-white relative">
-        <div className="max-w-5xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            variants={fadeInUp}
-            className="text-center"
-          >
-            <h2 className="text-sm font-bold text-teal-600 tracking-widest uppercase mb-3">About Me</h2>
-            <h3 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900">More Than Just HR Administration</h3>
+      <section id="about" className="py-24 bg-white relative scroll-mt-20">
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} className="text-center">
+            <h3 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900">About Me</h3>
             <div className="text-lg text-slate-600 leading-relaxed space-y-6">
               <p>
-                I bridge the gap between human behavior and business strategy. With a strong foundation in Psychology combined with <strong>3 years of hands-on HR experience</strong>, I bring a unique perspective to talent management. My approach focuses on <strong>strategic employee engagement</strong> and <strong>psychological assessment</strong> to ensure organizations retain high-performing talent that aligns with their culture.
+                I bridge the gap between human behavior and business strategy. With a strong foundation in Psychology combined with <strong>3 years of hands-on HR experience</strong>, I bring a unique perspective to talent management. My approach focuses on strategic employee engagement and psychological assessment to ensure organizations retain high-performing talent that aligns with their culture.
               </p>
             </div>
           </motion.div>
@@ -326,13 +363,13 @@ export default function Portfolio() {
       {/* --- CORE COMPETENCIES --- */}
       <section className="py-20 bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: false }} variants={fadeInUp}>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             <h2 className="text-3xl font-bold mb-12 flex items-center justify-center gap-3">
-              <Star className="text-teal-400" fill="currentColor" /> Core Competencies & Technical Skills
+              <Star className="text-teal-400" fill="currentColor" /> Core Competencies
             </h2>
-            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: false }} className="flex flex-wrap justify-center gap-4">
+            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-wrap justify-center gap-3">
               {skills.map((skill, index) => (
-                <motion.span key={index} variants={scaleIn} className="px-6 py-3 bg-slate-800 border border-slate-700 rounded-full text-slate-200 font-medium hover:bg-teal-900 hover:border-teal-500 hover:text-teal-300 transition-all cursor-default">
+                <motion.span key={index} variants={scaleIn} className="px-5 py-2.5 bg-slate-800/50 border border-slate-700 rounded-full text-slate-200 font-medium hover:bg-teal-900 hover:border-teal-500 hover:text-teal-300 transition-all cursor-default text-sm md:text-base">
                   {skill}
                 </motion.span>
               ))}
@@ -342,18 +379,20 @@ export default function Portfolio() {
       </section>
 
       {/* --- SERVICES --- */}
-      <section className="py-24 bg-slate-50">
+      <section id="services" className="py-24 bg-slate-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: false }} variants={fadeInUp} className="text-center mb-16">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">How I Can Help</h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">              Partnering to align the right talent with the right roles for growth.</p>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Partnering to align the right talent with the right roles for growth.</p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ delay: index * 0.1 }} className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-teal-500">
-                  <div className="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6"><Icon className="text-teal-600" size={28} /></div>
+                <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-teal-500 group">
+                  <div className="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-100 transition-colors">
+                      <Icon className="text-teal-600" size={28} />
+                  </div>
                   <h3 className="text-xl font-bold mb-3 text-slate-900">{service.title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{service.desc}</p>
                 </motion.div>
@@ -364,24 +403,34 @@ export default function Portfolio() {
       </section>
 
       {/* --- EXPERIENCE --- */}
-      <section className="py-24 bg-white">
+      <section id="experience" className="py-24 bg-white scroll-mt-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: false }} variants={fadeInUp} className="mb-12 flex items-center gap-4">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-12 flex items-center gap-4">
             <div className="h-px bg-slate-200 flex-1"></div>
             <h2 className="text-3xl font-bold text-slate-900">Professional Journey</h2>
             <div className="h-px bg-slate-200 flex-1"></div>
           </motion.div>
           <div className="space-y-8 relative">
             {experiences.map((exp, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 hover:border-teal-200 transition-colors flex flex-col md:flex-row gap-6">
+              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 hover:border-teal-200 transition-colors flex flex-col md:flex-row gap-6 group hover:shadow-lg">
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-xl bg-white p-2 shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden"><img src={exp.logo} alt={exp.company} className="w-full h-full object-contain" /></div>
+                  <div className="w-16 h-16 rounded-xl bg-white p-2 shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden relative">
+                     {/* Image optimization untuk Logo */}
+                     <Image 
+                       src={exp.logo} 
+                       alt={exp.company} 
+                       fill 
+                       className="object-contain p-2" 
+                       sizes="64px"
+                       unoptimized // Fix gambar
+                     />
+                  </div>
                 </div>
                 <div className="flex-grow">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900">{exp.role}</h3>
-                      <p className="text-teal-700 font-bold">{exp.company}</p>
+                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-teal-700 transition-colors">{exp.role}</h3>
+                      <p className="text-slate-600 font-bold">{exp.company}</p>
                     </div>
                     <div className="text-left md:text-right">
                       <span className="inline-block px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 mb-1">{exp.period}</span>
@@ -405,7 +454,7 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-12 gap-12">
             <div className="md:col-span-5">
-              <motion.div initial="hidden" whileInView="visible" viewport={{ once: false }} variants={fadeInUp}>
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
                 <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900"><GraduationCap className="text-teal-600" size={28} /> Academic Background</h2>
                 <div className="space-y-6">
                   {education.map((edu, index) => (
@@ -420,8 +469,8 @@ export default function Portfolio() {
               </motion.div>
             </div>
             <div className="md:col-span-7">
-              <motion.div initial="hidden" whileInView="visible" viewport={{ once: false }} variants={fadeInUp}>
-                <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900"><Award className="text-teal-600" size={28} /> Certifications & Courses</h2>
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+                <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900"><Award className="text-teal-600" size={28} />Courses</h2>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {trainings.map((train, index) => (
                     <a key={index} href={train.url} target="_blank" rel="noopener noreferrer" className="group p-4 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-teal-300 transition-all block h-full flex flex-col justify-between">
@@ -442,13 +491,27 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- CONTACT --- */}
-      <section id="contact" className="py-24 bg-slate-900 relative overflow-hidden text-white">
+      {/* --- CONTACT (Copywriting Baru) --- */}
+      <section id="contact" className="py-24 bg-slate-900 relative overflow-hidden text-white scroll-mt-20">
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-500"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: false }} variants={fadeInUp} className="space-y-8">
-              <div><h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-white">Let's Work Together</h2><p className="text-slate-400 text-lg leading-relaxed">Looking for a strategic partner in HR or Psychology? I'm currently open for new opportunities.</p></div>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="space-y-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white leading-tight">
+                  Ready to Elevate <br/> Your Team?
+                </h2>
+                <div className="text-slate-400 text-lg leading-relaxed space-y-4">
+                  <p>
+                    Whether you need a <strong>Strategic HR Partner</strong> for the long run, or an expert <strong>Consultant</strong> for specific recruitment & assessment projects.
+                  </p>
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    <span className="px-3 py-1 rounded-full bg-teal-900/50 border border-teal-700 text-teal-300 text-sm font-semibold cursor-default hover:bg-teal-900 transition-colors">Full-time</span>
+                    <span className="px-3 py-1 rounded-full bg-teal-900/50 border border-teal-700 text-teal-300 text-sm font-semibold cursor-default hover:bg-teal-900 transition-colors">Freelance</span>
+                    <span className="px-3 py-1 rounded-full bg-teal-900/50 border border-teal-700 text-teal-300 text-sm font-semibold cursor-default hover:bg-teal-900 transition-colors">Project-based</span>
+                  </div>
+                </div>
+              </div>
               <div className="space-y-6">
                 {[
                   { icon: Mail, label: "Email", value: "akbarwah.work@gmail.com", href: "mailto:akbarwah.work@gmail.com" },
@@ -458,7 +521,9 @@ export default function Portfolio() {
                   const Icon = item.icon;
                   return (
                     <a key={index} href={item.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group">
-                      <div className="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center group-hover:bg-teal-600 transition-colors border border-slate-700"><Icon className="text-teal-400 group-hover:text-white transition-colors" size={24} /></div>
+                      <div className="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center group-hover:bg-teal-600 transition-colors border border-slate-700">
+                          <Icon className="text-teal-400 group-hover:text-white transition-colors" size={24} />
+                      </div>
                       <div><p className="text-xs font-bold uppercase tracking-wider text-slate-500 group-hover:text-teal-400 transition-colors">{item.label}</p><p className="text-white font-medium text-lg">{item.value}</p></div>
                     </a>
                   );
@@ -466,8 +531,8 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-            {/* FORM SECTION SUDAH DIUPDATE DENGAN LOGIKA BARU */}
-            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: false }} className="bg-white p-8 md:p-10 rounded-3xl text-slate-900 shadow-2xl">
+            {/* FORM SECTION */}
+            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="bg-white p-8 md:p-10 rounded-3xl text-slate-900 shadow-2xl">
               <h3 className="text-2xl font-bold mb-6 text-slate-900">Send Me a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
@@ -493,5 +558,5 @@ export default function Portfolio() {
   );
 }
 
-// Named export fix for Figma compatibility
+// Named export fix for Figma compatibility (Optional, bisa dihapus jika tidak pakai Figma sync)
 export const About = Portfolio;
