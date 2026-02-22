@@ -16,13 +16,16 @@ import {
   ClipboardList,
   Star,
   ExternalLink,
-  Menu, // Icon untuk mobile menu
-  X,    // Icon untuk close menu
-  Hexagon, // Icon Logo Baru
+  Menu,
+  X,
+  Hexagon,
+  Sun, // Icon Matahari
+  Moon, // Icon Bulan
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import Image from "next/image"; // Menggunakan Image Component Next.js
+import Image from "next/image";
+import { useTheme } from "next-themes"; // Import untuk Dark Mode
 
 // --- ANIMATION VARIANTS ---
 const fadeInUp: Variants = {
@@ -57,8 +60,12 @@ const scaleIn: Variants = {
 export default function Portfolio() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [scrolled, setScrolled] = useState(false); // State untuk Navbar
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // State untuk Mobile Menu
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Dark Mode States
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   // Contact Form Logic
   const [formData, setFormData] = useState({
@@ -67,8 +74,9 @@ export default function Portfolio() {
     message: "",
   });
 
-  // Handle Scroll Effect for Navbar
+  // Handle Scroll & Mount Effect
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -234,7 +242,7 @@ export default function Portfolio() {
       url: "https://coursera.org/share/b3b3e822e0138ca13da07f158a94a977",
     },
     {
-      name: "Recruiting, Hiring, & Onboarding",
+      name: "Recruiting, Hiring, and Onboarding Employees",
       issuer: "University of Minnesota",
       year: "2023",
       url: "https://coursera.org/share/ab599e642944b509f304075cee97c6f2",
@@ -247,39 +255,60 @@ export default function Portfolio() {
     "People Management",
     "Counseling",
     "HRIS Management",
+    "Industrial Relations",
     "Employee Training",
+    "Google Workspace",
   ];
 
   return (
-    <div className="bg-slate-50 min-h-screen font-sans text-slate-900 overflow-x-hidden selection:bg-teal-200">
+    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen font-sans text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-teal-200 dark:selection:bg-teal-900 transition-colors duration-300">
       
       {/* --- NAVBAR --- */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-md py-4" : "bg-transparent py-6"}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 dark:bg-slate-950/90 backdrop-blur-md shadow-md py-4" : "bg-transparent py-6"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           
-          {/* Logo Baru (Hexagon) */}
           <div className="flex items-center gap-2 cursor-default">
             <div className="bg-teal-600 p-1.5 rounded-lg text-white shadow-sm">
               <Hexagon size={24} strokeWidth={2.5} />
             </div>
-            <span className="text-xl font-extrabold tracking-tight text-slate-900">
+            <span className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               Akbar<span className="text-teal-600">.</span>
             </span>
           </div>
           
-          {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-sm font-medium text-slate-600 hover:text-teal-600 transition-colors">
+              <a key={link.name} href={link.href} className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
                 {link.name}
               </a>
             ))}
+            
+            {/* DARK MODE TOGGLE (DESKTOP) */}
+            {mounted && (
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-teal-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                aria-label="Toggle Dark Mode"
+              >
+                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-slate-900" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+             {/* DARK MODE TOGGLE (MOBILE) */}
+             {mounted && (
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-teal-400"
+              >
+                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+            )}
+            <button className="text-slate-900 dark:text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Dropdown */}
@@ -289,11 +318,11 @@ export default function Portfolio() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-b border-slate-100"
+              className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800"
             >
               <div className="px-4 py-4 space-y-3">
                  {navLinks.map((link) => (
-                  <a key={link.name} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-slate-50 px-3 py-2 rounded-lg">
+                  <a key={link.name} href={link.href} onClick={() => setMobileMenuOpen(false)} className="block text-base font-medium text-slate-700 dark:text-slate-200 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-slate-50 dark:hover:bg-slate-800 px-3 py-2 rounded-lg transition-colors">
                     {link.name}
                   </a>
                 ))}
@@ -304,12 +333,11 @@ export default function Portfolio() {
       </nav>
 
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-40 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 via-white to-slate-50">
+      <section className="relative pt-40 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-950 transition-colors duration-300">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            {/* FOTO PROFIL */}
             <div className="mb-8 flex justify-center">
-              <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-white shadow-2xl overflow-hidden bg-slate-200 relative ring-4 ring-teal-50">
+              <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden bg-slate-200 dark:bg-slate-800 relative ring-4 ring-teal-50 dark:ring-teal-900/30">
                 <Image
                   src="https://i.postimg.cc/RVCYBbpn/DSC07063-(4)-(1).jpg"
                   alt="Akbar Wahyu Adi"
@@ -317,26 +345,26 @@ export default function Portfolio() {
                   className="object-cover"
                   style={{ objectPosition: "60% 35%", transform: "scale(1.5)" }}
                   priority
-                  unoptimized // Fix gambar
+                  unoptimized
                 />
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-slate-900 dark:text-white tracking-tight leading-tight transition-colors">
               Akbar Wahyu Adi
             </h1>
 
-            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-              Merging <span className="text-teal-600 font-bold">Psychological Insights</span> with{" "}
-              <span className="text-teal-600 font-bold">Strategic HR</span> to build stronger teams and healthier workplace cultures.
+            <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light transition-colors">
+              Merging <span className="text-teal-600 dark:text-teal-400 font-bold">Psychological Insights</span> with{" "}
+              <span className="text-teal-600 dark:text-teal-400 font-bold">Strategic HR</span> to build stronger teams and healthier workplace cultures.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#contact" className="px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-teal-700 transition-all shadow-lg hover:shadow-teal-200/50 flex items-center justify-center gap-2 transform hover:-translate-y-1">
+              <a href="#contact" className="px-8 py-4 bg-slate-900 dark:bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-700 dark:hover:bg-teal-500 transition-all shadow-lg hover:shadow-teal-200/50 dark:hover:shadow-teal-900/50 flex items-center justify-center gap-2 transform hover:-translate-y-1">
                 <Send size={18} /> Let's Collaborate
               </a>
               
-              <a href="https://drive.google.com/uc?export=download&id=1Xy8R8PjCtJdvlZx0DRJ-SAW82Di5m3rz" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-white text-slate-800 border border-slate-200 rounded-xl font-bold hover:border-teal-400 hover:text-teal-700 hover:bg-teal-50 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow-md">
+              <a href="https://drive.google.com/uc?export=download&id=1Xy8R8PjCtJdvlZx0DRJ-SAW82Di5m3rz" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-bold hover:border-teal-400 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow-md">
                 <Download size={20} /> Download CV
               </a>
             </div>
@@ -345,13 +373,13 @@ export default function Portfolio() {
       </section>
 
       {/* --- ABOUT ME --- */}
-      <section id="about" className="py-24 bg-white relative scroll-mt-20">
+      <section id="about" className="py-24 bg-white dark:bg-slate-950 relative scroll-mt-20 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} className="text-center">
-            <h3 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900">About Me</h3>
-            <div className="text-lg text-slate-600 leading-relaxed space-y-6">
+            <h3 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 dark:text-white">About Me</h3>
+            <div className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed space-y-6">
               <p>
-                I bridge the gap between human behavior and business strategy. With a strong foundation in Psychology combined with <strong>3 years of hands-on HR experience</strong>, I bring a unique perspective to talent management. My approach focuses on strategic employee engagement and psychological assessment to ensure organizations retain high-performing talent that aligns with their culture.
+                I bridge the gap between human behavior and business strategy. With a strong foundation in Psychology combined with <strong className="dark:text-white">3 years of hands-on HR experience</strong>, I bring a unique perspective to talent management. My approach focuses on strategic employee engagement and psychological assessment to ensure organizations retain high-performing talent that aligns with their culture.
               </p>
             </div>
           </motion.div>
@@ -359,7 +387,7 @@ export default function Portfolio() {
       </section>
 
       {/* --- CORE COMPETENCIES --- */}
-      <section className="py-20 bg-slate-900 text-white">
+      <section className="py-20 bg-slate-900 dark:bg-slate-900 text-white transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             <h2 className="text-3xl font-bold mb-12 flex items-center justify-center gap-3">
@@ -377,22 +405,22 @@ export default function Portfolio() {
       </section>
 
       {/* --- SERVICES --- */}
-      <section id="services" className="py-24 bg-slate-50 scroll-mt-20">
+      <section id="services" className="py-24 bg-slate-50 dark:bg-slate-950 scroll-mt-20 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">How I Can Help</h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">Partnering to align the right talent with the right roles for growth.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">How I Can Help</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Partnering to align the right talent with the right roles for growth.</p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-teal-500 group">
-                  <div className="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-100 transition-colors">
-                      <Icon className="text-teal-600" size={28} />
+                <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="p-8 bg-white dark:bg-slate-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-teal-500 dark:border-slate-800 dark:hover:border-teal-500 group">
+                  <div className="w-14 h-14 bg-teal-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-100 dark:group-hover:bg-teal-900/30 transition-colors">
+                      <Icon className="text-teal-600 dark:text-teal-400" size={28} />
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-slate-900">{service.title}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{service.desc}</p>
+                  <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">{service.title}</h3>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{service.desc}</p>
                 </motion.div>
               );
             })}
@@ -401,43 +429,42 @@ export default function Portfolio() {
       </section>
 
       {/* --- EXPERIENCE --- */}
-      <section id="experience" className="py-24 bg-white scroll-mt-20">
+      <section id="experience" className="py-24 bg-white dark:bg-slate-950 scroll-mt-20 transition-colors duration-300">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="mb-12 flex items-center gap-4">
-            <div className="h-px bg-slate-200 flex-1"></div>
-            <h2 className="text-3xl font-bold text-slate-900">Professional Journey</h2>
-            <div className="h-px bg-slate-200 flex-1"></div>
+            <div className="h-px bg-slate-200 dark:bg-slate-800 flex-1"></div>
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Professional Journey</h2>
+            <div className="h-px bg-slate-200 dark:bg-slate-800 flex-1"></div>
           </motion.div>
           <div className="space-y-8 relative">
             {experiences.map((exp, index) => (
-              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 hover:border-teal-200 transition-colors flex flex-col md:flex-row gap-6 group hover:shadow-lg">
+              <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="bg-slate-50 dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-800 hover:border-teal-200 dark:hover:border-teal-500/50 transition-colors flex flex-col md:flex-row gap-6 group hover:shadow-lg dark:hover:shadow-teal-900/10">
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-xl bg-white p-2 shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden relative">
-                     {/* Image optimization untuk Logo */}
+                  <div className="w-16 h-16 rounded-xl bg-white p-2 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-center overflow-hidden relative">
                      <Image 
                        src={exp.logo} 
                        alt={exp.company} 
                        fill 
                        className="object-contain p-2" 
                        sizes="64px"
-                       unoptimized // Fix gambar
+                       unoptimized
                      />
                   </div>
                 </div>
                 <div className="flex-grow">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900 group-hover:text-teal-700 transition-colors">{exp.role}</h3>
-                      <p className="text-slate-600 font-bold">{exp.company}</p>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-teal-700 dark:group-hover:text-teal-400 transition-colors">{exp.role}</h3>
+                      <p className="text-slate-600 dark:text-slate-300 font-bold">{exp.company}</p>
                     </div>
                     <div className="text-left md:text-right">
-                      <span className="inline-block px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-600 mb-1">{exp.period}</span>
-                      <p className="text-slate-500 text-xs flex md:justify-end items-center gap-1 mt-1"><MapPin size={12} /> {exp.location}</p>
+                      <span className="inline-block px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">{exp.period}</span>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs flex md:justify-end items-center gap-1 mt-1"><MapPin size={12} /> {exp.location}</p>
                     </div>
                   </div>
                   <ul className="space-y-2">
                     {exp.desc.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-slate-700 text-sm"><CheckCircle2 className="text-teal-500 mt-0.5 flex-shrink-0" size={16} /><span className="leading-relaxed">{item}</span></li>
+                      <li key={i} className="flex items-start gap-3 text-slate-700 dark:text-slate-400 text-sm"><CheckCircle2 className="text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" size={16} /><span className="leading-relaxed">{item}</span></li>
                     ))}
                   </ul>
                 </div>
@@ -448,19 +475,19 @@ export default function Portfolio() {
       </section>
 
       {/* --- EDUCATION & CERTIFICATIONS --- */}
-      <section className="py-24 bg-slate-50 border-t border-slate-200">
+      <section className="py-24 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-12 gap-12">
             <div className="md:col-span-5">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-                <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900"><GraduationCap className="text-teal-600" size={28} /> Academic Background</h2>
+                <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900 dark:text-white"><GraduationCap className="text-teal-600 dark:text-teal-400" size={28} /> Academic Background</h2>
                 <div className="space-y-6">
                   {education.map((edu, index) => (
-                    <div key={index} className="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-teal-500">
-                      <h3 className="text-lg font-bold text-slate-900">{edu.school}</h3>
-                      <p className="text-teal-700 font-medium">{edu.degree}</p>
-                      <p className="text-slate-500 text-sm mt-1">{edu.year}</p>
-                      {edu.note && <p className="text-slate-600 text-sm mt-3 italic">"{edu.note}"</p>}
+                    <div key={index} className="bg-white dark:bg-slate-950 p-6 rounded-2xl shadow-sm border-l-4 border-teal-500 dark:border-slate-800">
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white">{edu.school}</h3>
+                      <p className="text-teal-700 dark:text-teal-400 font-medium">{edu.degree}</p>
+                      <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">{edu.year}</p>
+                      {edu.note && <p className="text-slate-600 dark:text-slate-500 text-sm mt-3 italic">"{edu.note}"</p>}
                     </div>
                   ))}
                 </div>
@@ -468,15 +495,15 @@ export default function Portfolio() {
             </div>
             <div className="md:col-span-7">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-                <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900"><Award className="text-teal-600" size={28} />Courses</h2>
+                <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900 dark:text-white"><Award className="text-teal-600 dark:text-teal-400" size={28} /> Certifications & Courses</h2>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {trainings.map((train, index) => (
-                    <a key={index} href={train.url} target="_blank" rel="noopener noreferrer" className="group p-4 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-teal-300 transition-all block h-full flex flex-col justify-between">
+                    <a key={index} href={train.url} target="_blank" rel="noopener noreferrer" className="group p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-teal-300 dark:hover:border-teal-600/50 transition-all block h-full flex flex-col justify-between">
                       <div className="flex justify-between items-start gap-2 mb-2">
-                        <h4 className="text-slate-800 font-bold text-sm leading-tight group-hover:text-teal-700 transition-colors line-clamp-2">{train.name}</h4>
-                        <ExternalLink size={16} className="text-slate-300 group-hover:text-teal-500 transition-colors flex-shrink-0 mt-0.5" />
+                        <h4 className="text-slate-800 dark:text-slate-200 font-bold text-sm leading-tight group-hover:text-teal-700 dark:group-hover:text-teal-400 transition-colors line-clamp-2">{train.name}</h4>
+                        <ExternalLink size={16} className="text-slate-300 dark:text-slate-600 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors flex-shrink-0 mt-0.5" />
                       </div>
-                      <div className="pt-3 mt-auto border-t border-slate-50 text-[11px] font-medium text-slate-500 flex justify-between items-center">
+                      <div className="pt-3 mt-auto border-t border-slate-50 dark:border-slate-800/50 text-[11px] font-medium text-slate-500 dark:text-slate-500 flex justify-between items-center">
                         <span className="truncate max-w-[75%]">{train.issuer}</span>
                         <span>{train.year}</span>
                       </div>
@@ -489,7 +516,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- CONTACT (Copywriting Baru) --- */}
+      {/* --- CONTACT --- */}
       <section id="contact" className="py-24 bg-slate-900 relative overflow-hidden text-white scroll-mt-20">
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-500"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -501,7 +528,7 @@ export default function Portfolio() {
                 </h2>
                 <div className="text-slate-400 text-lg leading-relaxed space-y-4">
                   <p>
-                    Whether you need a <strong>Strategic HR Partner</strong> for the long run, or an expert <strong>Consultant</strong> for specific projects.
+                    Whether you need a <strong>Strategic HR Partner</strong> for the long run, or an expert <strong>Consultant</strong> for specific recruitment & assessment projects.
                   </p>
                   <div className="flex flex-wrap gap-3 pt-2">
                     <span className="px-3 py-1 rounded-full bg-teal-900/50 border border-teal-700 text-teal-300 text-sm font-semibold cursor-default hover:bg-teal-900 transition-colors">Full-time</span>
@@ -530,22 +557,22 @@ export default function Portfolio() {
             </motion.div>
 
             {/* FORM SECTION */}
-            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="bg-white p-8 md:p-10 rounded-3xl text-slate-900 shadow-2xl">
-              <h3 className="text-2xl font-bold mb-6 text-slate-900">Send Me a Message</h3>
+            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl text-slate-900 dark:text-white shadow-2xl dark:border dark:border-slate-800 transition-colors">
+              <h3 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Send Me a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Your Name</label>
-                  <input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
+                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
+                  <input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
-                  <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
+                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                  <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Message</label>
-                  <textarea rows={4} name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500 outline-none resize-none transition-all" required />
+                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                  <textarea rows={4} name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none resize-none transition-all" required />
                 </div>
-                <button type="submit" disabled={isSubmitting || isSubmitted} className={`w-full py-4 rounded-xl font-bold text-white transition-all shadow-lg ${isSubmitted ? "bg-green-500" : "bg-slate-900 hover:bg-teal-600 hover:shadow-teal-200"}`}>{isSubmitting ? "Sending..." : isSubmitted ? "Message Sent!" : "Send Message"}</button>
+                <button type="submit" disabled={isSubmitting || isSubmitted} className={`w-full py-4 rounded-xl font-bold text-white transition-all shadow-lg ${isSubmitted ? "bg-green-500" : "bg-slate-900 dark:bg-teal-600 hover:bg-teal-600 dark:hover:bg-teal-500 hover:shadow-teal-200 dark:hover:shadow-teal-900"}`}>{isSubmitting ? "Sending..." : isSubmitted ? "Message Sent!" : "Send Message"}</button>
               </form>
             </motion.div>
           </div>
@@ -555,6 +582,3 @@ export default function Portfolio() {
     </div>
   );
 }
-
-// Named export fix for Figma compatibility (Optional, bisa dihapus jika tidak pakai Figma sync)
-export const About = Portfolio;
