@@ -99,7 +99,6 @@ export default function Portfolio() {
         setIsSubmitting(false);
         setIsSubmitted(true);
         setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setIsSubmitted(false), 5000);
       } else {
         setIsSubmitting(false);
         alert("Ada masalah saat mengirim pesan. Silakan coba lagi.");
@@ -118,26 +117,31 @@ export default function Portfolio() {
     { name: "Contact", href: "#contact" },
   ];
 
-  const services = [
+const services = [
     {
       title: "Strategic Recruitment",
-      desc: "Managing end-to-end talent acquisition. Proven success in high-volume hiring and niche sourcing.",
+      desc: "Managing end-to-end talent acquisition. Proven success in high-volume hiring and sourcing niche professionals aligned with business goals.",
       icon: Users,
     },
     {
       title: "Psychological Assessment",
-      desc: "Utilizing psychometrics and behavioral interviewing to evaluate candidate potential and cultural fit accurately.",
+      desc: "Conducting comprehensive evaluations for hiring, talent mapping, and leadership promotion using validated psychometrics and behavioral insights.",
       icon: Brain,
     },
     {
       title: "HR Operations",
-      desc: "Streamlining onboarding, attendance, and HRIS management to ensure operational excellence and compliance.",
+      desc: "Streamlining onboarding, attendance, and HRIS management to ensure operational excellence, compliance, and seamless daily HR functions.",
       icon: ClipboardList,
     },
     {
-      title: "People Development",
-      desc: "Conducting counseling and engagement programs to foster a healthy, productive, and retaining work environment.",
+      title: "Training & People Development",
+      desc: "Designing impactful corporate training, psychological counseling, and engagement programs to maximize employee potential and well-being.",
       icon: Briefcase,
+    },
+    {
+      title: "Educational & Personal Assessment",
+      desc: "Providing IQ testing, student talent mapping (penjurusan), and individual psychological counseling to support personal growth and academic success.",
+      icon: GraduationCap, 
     },
   ];
 
@@ -149,10 +153,9 @@ export default function Portfolio() {
       location: "Yogyakarta (Onsite)",
       logo: "https://i.postimg.cc/sf4P3jbM/tamtech-international-logo.jpg",
       desc: [
-        "Create and enforce HR policies and procedures in compliance with regulations.",
-        "Oversee recruitment, including screening, interviewing, and job offers.",
-        "Conduct onboarding programs and manage employee performance counseling.",
-        "Handle office operations, inventory, and attendance reporting.",
+        "Manage the end-to-end recruitment lifecycle and onboarding, utilizing psychological insights for better candidate evaluation.",
+        "Handle daily HR & GA operations, including HRIS administration, attendance reporting, and office asset management.",
+        "Enforce company SOPs and provide employee counseling to address performance gaps and resolve internal issues."
       ],
     },
     {
@@ -204,9 +207,9 @@ export default function Portfolio() {
 
   const education = [
     {
-      degree: "Professional Program in Psychology",
+      degree: "Professional Program in Psychology (General Psychologist)",
       school: "Universitas Gadjah Mada",
-      year: "2024 - Present",
+      year: "2024 - 2026",
     },
     {
       degree: "Bachelor of Psychology",
@@ -216,7 +219,13 @@ export default function Portfolio() {
     },
   ];
 
-  const trainings = [
+const trainings = [
+    {
+      name: "Tester: AJT Cognitive Abilities Test",
+      issuer: "Universitas Gadjah Mada",
+      year: "2025",
+      url: "https://drive.google.com/file/d/1oZmpqpQ2oTlfuSfeVQmewzSdsIYAEtwx/view?usp=sharing",
+    },
     {
       name: "Diploma in HR Management",
       issuer: "Oxford Home Study Centre",
@@ -242,22 +251,21 @@ export default function Portfolio() {
       url: "https://coursera.org/share/b3b3e822e0138ca13da07f158a94a977",
     },
     {
-      name: "Recruiting, Hiring, and Onboarding Employees",
+      name: "Recruiting, Hiring, & Onboarding Employees",
       issuer: "University of Minnesota",
       year: "2023",
       url: "https://coursera.org/share/ab599e642944b509f304075cee97c6f2",
     },
   ];
 
-  const skills = [
+const skills = [
     "End-to-end Recruitment",
     "Psychological Assessment",
-    "People Management",
-    "Counseling",
-    "HRIS Management",
-    "Industrial Relations",
-    "Employee Training",
-    "Google Workspace",
+    "Talent Mapping",             // <--- Tambahan (Sangat dicari perusahaan & sekolah)
+    "Learning & Development",     // <--- Upgrade dari Employee Training
+    "Psychological Counseling",   // <--- Upgrade dari Counseling
+    "Performance Management",     // <--- Upgrade dari People Management
+    "HRIS Management",      // <--- Upgrade: Lebih teknikal & HR banget
   ];
 
   return (
@@ -350,21 +358,21 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-slate-900 dark:text-white tracking-tight leading-tight transition-colors">
-              Akbar Wahyu Adi
-            </h1>
+<h1 className="text-5xl md:text-7xl font-extrabold mb-4 text-slate-900 dark:text-white tracking-tight leading-tight transition-colors">
+  Akbar Wahyu Adi
+</h1>
 
-            <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light transition-colors">
-              Merging <span className="text-teal-600 dark:text-teal-400 font-bold">Psychological Insights</span> with{" "}
-              <span className="text-teal-600 dark:text-teal-400 font-bold">Strategic HR</span> to build stronger teams and healthier workplace cultures.
-            </p>
+{/* TAMBAHAN BARU: Jabatan/Gelar yang jelas */}
+<h2 className="text-xl md:text-2xl font-semibold text-teal-600 dark:text-teal-400 mb-6 tracking-wide">
+  Human Resources & General Psychologist
+</h2>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#contact" className="px-8 py-4 bg-slate-900 dark:bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-700 dark:hover:bg-teal-500 transition-all shadow-lg hover:shadow-teal-200/50 dark:hover:shadow-teal-900/50 flex items-center justify-center gap-2 transform hover:-translate-y-1">
                 <Send size={18} /> Let's Collaborate
               </a>
               
-              <a href="https://drive.google.com/uc?export=download&id=1Xy8R8PjCtJdvlZx0DRJ-SAW82Di5m3rz" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-bold hover:border-teal-400 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow-md">
+              <a href="https://drive.google.com/file/d/1XiujmJ0rXZSmxBqWrWKT7A1sIL_u4W_z/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-bold hover:border-teal-400 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow-md">
                 <Download size={20} /> Download CV
               </a>
             </div>
@@ -377,11 +385,11 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} className="text-center">
             <h3 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 dark:text-white">About Me</h3>
-            <div className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed space-y-6">
-              <p>
-                I bridge the gap between human behavior and business strategy. With a strong foundation in Psychology combined with <strong className="dark:text-white">3 years of hands-on HR experience</strong>, I bring a unique perspective to talent management. My approach focuses on strategic employee engagement and psychological assessment to ensure organizations retain high-performing talent that aligns with their culture.
-              </p>
-            </div>
+<div className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed space-y-6">
+  <p>
+    I bridge the gap between human behavior and business strategy. As a Licensed General Psychologist combined with <strong className="dark:text-white">4 years of hands-on HR experience</strong>, I bring a unique and analytical perspective to talent management. My approach focuses on evidence-based <strong>psychological assessment</strong> and strategic employee engagement to ensure organizations attract, develop, and retain high-performing talent.
+  </p>
+</div>
           </motion.div>
         </div>
       </section>
@@ -404,18 +412,35 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* --- SERVICES --- */}
+{/* --- SERVICES --- */}
       <section id="services" className="py-24 bg-slate-50 dark:bg-slate-950 scroll-mt-20 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">How I Can Help</h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Partnering to align the right talent with the right roles for growth.</p>
           </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          {/* UBAH CLASS GRID DI SINI */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
             {services.map((service, index) => {
               const Icon = service.icon;
+              
+              // LOGIKA BARU: Mengatur proporsi kartu agar simetris
+              // 3 kartu pertama ambil 2 kolom (3x2=6). 2 kartu terakhir ambil 3 kolom (2x3=6) sehingga posisinya di tengah.
+              const desktopSpan = index < 3 ? "lg:col-span-2" : "lg:col-span-3";
+              // Di tablet, kartu kelima (index 4) dibuat memanjang agar tidak bolong di kanan
+              const tabletSpan = index === 4 ? "md:col-span-2" : "md:col-span-1";
+
               return (
-                <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className="p-8 bg-white dark:bg-slate-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-teal-500 dark:border-slate-800 dark:hover:border-teal-500 group">
+                <motion.div 
+                  key={index} 
+                  initial={{ opacity: 0, y: 20 }} 
+                  whileInView={{ opacity: 1, y: 0 }} 
+                  viewport={{ once: true }} 
+                  transition={{ delay: index * 0.1 }} 
+                  // TAMBAHKAN VARIABEL SPAN DI AKHIR CLASSNAME
+                  className={`p-8 bg-white dark:bg-slate-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-teal-500 dark:border-slate-800 dark:hover:border-teal-500 group ${desktopSpan} ${tabletSpan}`}
+                >
                   <div className="w-14 h-14 bg-teal-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-100 dark:group-hover:bg-teal-900/30 transition-colors">
                       <Icon className="text-teal-600 dark:text-teal-400" size={28} />
                   </div>
@@ -557,23 +582,56 @@ export default function Portfolio() {
             </motion.div>
 
             {/* FORM SECTION */}
-            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl text-slate-900 dark:text-white shadow-2xl dark:border dark:border-slate-800 transition-colors">
-              <h3 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Send Me a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
-                  <input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
-                  <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Message</label>
-                  <textarea rows={4} name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none resize-none transition-all" required />
-                </div>
-                <button type="submit" disabled={isSubmitting || isSubmitted} className={`w-full py-4 rounded-xl font-bold text-white transition-all shadow-lg ${isSubmitted ? "bg-green-500" : "bg-slate-900 dark:bg-teal-600 hover:bg-teal-600 dark:hover:bg-teal-500 hover:shadow-teal-200 dark:hover:shadow-teal-900"}`}>{isSubmitting ? "Sending..." : isSubmitted ? "Message Sent!" : "Send Message"}</button>
-              </form>
+<motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="bg-white dark:bg-slate-950 p-8 md:p-10 rounded-3xl text-slate-900 dark:text-white shadow-2xl dark:border dark:border-slate-800 transition-colors min-h-[450px] flex flex-col justify-center">
+              
+              <AnimatePresence mode="wait">
+                {isSubmitted ? (
+                  // --- TAMPILAN SUKSES (SUCCESS STATE) ---
+                  <motion.div 
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.9 }} 
+                    animate={{ opacity: 1, scale: 1 }} 
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="text-center flex flex-col items-center justify-center py-8"
+                  >
+                    <div className="w-20 h-20 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full flex items-center justify-center mb-6">
+                      <CheckCircle2 size={40} />
+                    </div>
+                    <h3 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">Message Sent!</h3>
+                    <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                      Thank you for reaching out. I have received your message and will get back to you shortly.
+                    </p>
+                    <button 
+                      onClick={() => setIsSubmitted(false)} 
+                      className="px-6 py-3 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl font-semibold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                    >
+                      Send Another Message
+                    </button>
+                  </motion.div>
+                ) : (
+                  // --- TAMPILAN FORM ASLI ---
+                  <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                    <h3 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Send Me a Message</h3>
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Your Name</label>
+                        <input type="text" name="name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                        <input type="email" name="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none transition-all" required />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                        <textarea rows={4} name="message" value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl focus:ring-2 focus:ring-teal-500 outline-none resize-none transition-all" required />
+                      </div>
+                      <button type="submit" disabled={isSubmitting} className="w-full py-4 rounded-xl font-bold text-white transition-all shadow-lg bg-slate-900 dark:bg-teal-600 hover:bg-teal-600 dark:hover:bg-teal-500 hover:shadow-teal-200 dark:hover:shadow-teal-900 disabled:opacity-70 disabled:cursor-not-allowed">
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </button>
+                    </form>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </div>
           <div className="mt-20 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">© 2026 Akbarwap. All rights reserved.</div>

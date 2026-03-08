@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers"; // <--- IMPORT PROVIDER BARU
+import { Providers } from "./providers"; // Pastikan file ini memang ada di project Anda ya
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,17 +9,18 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   // Judul di Tab Browser
   title: {
-    default: "Akbar Wahyu Adi | HR Development",
+    default: "Akbar Wahyu Adi | Human Resourcees & Psychologist",
     template: "%s | Akbar Wahyu Adi",
   },
   // Deskripsi untuk Google Search
-  description: "Portfolio of Akbar Wahyu Adi. An HR Professional based in Yogyakarta, specializing in Recruitment, Psychological Assessment, and People Development.",
+  description: "Portfolio of Akbar Wahyu Adi. An HR Professional and Psychologist based in Yogyakarta, specializing in Recruitment, Psychological Assessment, and People Development.",
   
   // Kata Kunci untuk Google
   keywords: [
     "Akbar Wahyu Adi", 
-    "HR Professional", 
-    "Psychology Student", 
+    "HR Professional",
+    "General Psychologist", 
+    "Psikolog Jogja",
     "Recruitment Specialist", 
     "Tamtech International", 
     "Human Resources Yogyakarta", 
@@ -33,13 +34,12 @@ export const metadata: Metadata = {
 
   // --- OPEN GRAPH (Tampilan saat share di WA/LinkedIn/FB) ---
   openGraph: {
-    title: "Akbar Wahyu Adi | Strategic HR & Psychology Professional",
+    title: "Akbar Wahyu Adi | HR Professional & Psychologist",
     description: "Merging Psychological Insights with Strategic HR to build stronger teams. Available for Full-time, Freelance, and Projects.",
-    url: "https://portfolio-akbar.vercel.app", // Ganti dengan domain asli nanti setelah deploy
+    url: "https://portfolio-akbar.vercel.app", // Ingat untuk ganti jika pakai custom domain
     siteName: "Akbar Wahyu Adi Portfolio",
     images: [
       {
-        // Saya pakai foto profil Anda sebagai thumbnail sementara
         url: "https://i.postimg.cc/RVCYBbpn/DSC07063-(4)-(1).jpg", 
         width: 1200,
         height: 630,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   // --- TWITTER CARD (Tampilan saat share di Twitter/X) ---
   twitter: {
     card: "summary_large_image",
-    title: "Akbar Wahyu Adi | Strategic HR & Psychology Professional",
+    title: "Akbar Wahyu Adi | HR Professional & Psychologist",
     description: "Merging Psychological Insights with Strategic HR to build stronger teams.",
     images: ["https://i.postimg.cc/RVCYBbpn/DSC07063-(4)-(1).jpg"], 
   },
@@ -71,10 +71,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Tambahkan suppressHydrationWarning di sini
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={inter.className}>
-        {/* BUNGKUS CHILDREN DENGAN PROVIDERS */}
         <Providers>
           {children}
         </Providers>
