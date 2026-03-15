@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   // Deskripsi untuk Google Search
   description: "Portfolio of Akbar Wahyu Adi. An HR Professional and Psychologist based in Yogyakarta, specializing in Recruitment, Psychological Assessment, and People Development.",
   
+  verification: {
+    google: "HMoRwMS8qnGYF6u1qZOT1qkYppGHsVTfbOAZDX5jv98",
+  },
+  
   // Kata Kunci untuk Google
   keywords: [
     "Akbar Wahyu Adi", 
