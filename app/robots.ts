@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://portfolio-akbar.vercel.app/sitemap.xml',
+    sitemap: 'https://akbarwah.vercel.app/sitemap.xml',
   }
 }
