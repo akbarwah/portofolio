@@ -31,27 +31,27 @@ export const skillsData = [
 export const servicesData = [
   {
     title: "Strategic Recruitment",
-    desc: "Managing end-to-end talent acquisition. Proven success in high-volume hiring and sourcing niche professionals aligned with business goals.",
+    desc: "Get the right people, faster. I manage the full hiring cycle — from sourcing to onboarding — with a proven track record in high-volume and niche recruitment across industries.",
     icon: Users,
   },
   {
     title: "Psychological Assessment",
-    desc: "Conducting comprehensive evaluations for hiring, talent mapping, and leadership promotion using validated psychometrics and behavioral insights.",
+    desc: "Make confident hiring decisions. Conducting comprehensive evaluations for hiring, talent mapping, and leadership promotion using validated psychometrics and behavioral insights.",
     icon: Brain,
   },
   {
     title: "HR Operations",
-    desc: "Streamlining onboarding, attendance, and HRIS management to ensure operational excellence, compliance, and seamless daily HR functions.",
+    desc: "Keep your HR running smoothly. From HRIS administration and attendance systems to onboarding workflows, I ensure compliance and operational efficiency.",
     icon: ClipboardList,
   },
   {
     title: "Training & People Development",
-    desc: "Designing impactful corporate training, psychological counseling, and engagement programs to maximize employee potential and well-being.",
+    desc: "Unlock your team's full potential. I design corporate training programs, facilitate psychological counseling, and build engagement strategies that stick.",
     icon: Briefcase,
   },
   {
     title: "Educational & Personal Assessment",
-    desc: "Providing IQ testing, student talent mapping (penjurusan), and individual psychological counseling to support personal growth and academic success.",
+    desc: "Support growth at every stage. I provide IQ testing, academic talent mapping (penjurusan), and individual counseling for students and professionals alike.",
     icon: GraduationCap, 
   },
 ];
@@ -65,8 +65,8 @@ export const experienceData = [
     location: "Yogyakarta (Onsite)",
     logo: "https://i.postimg.cc/sf4P3jbM/tamtech-international-logo.jpg",
     desc: [
-      "Manage the end-to-end recruitment lifecycle and onboarding, utilizing psychological insights for better candidate evaluation.",
-      "Handle daily HR & GA operations, including HRIS administration, attendance reporting, and office asset management.",
+   "Manage end-to-end recruitment lifecycle for 20+ roles annually, applying strategy to improve hiring quality and reduce early turnover.",
+    "Administer daily HR & GA operations for 60+ employees, including HRIS, attendance reporting, and office asset management.",
       "Enforce company SOPs and provide employee counseling to address performance gaps and resolve internal issues."
     ],
   },
@@ -88,9 +88,9 @@ export const experienceData = [
     location: "Kuningan (Onsite)",
     logo: "https://i.postimg.cc/90QDmhqp/1630595087692.jpg",
     desc: [
-      "Provided comprehensive counseling support through individual and group sessions.",
-      "Delivered engaging Sociology curriculum to 13 classes weekly while facilitating the Sociology Study-Club.",
-      "Served as a Sociology tutor for the 12th-grade SNBT Preparation Program.",
+    "Delivered counseling support through 50+ individual and group sessions, addressing academic stress, career guidance, and personal development.",
+    "Taught Sociology curriculum to 13 classes (300+ students) weekly while leading the Sociology Study-Club extracurricular.",
+    "Served as a dedicated Sociology tutor for the 12th-grade university entrance exam (SNBT) Preparation Program."
     ],
   },
   {
@@ -101,7 +101,7 @@ export const experienceData = [
     logo: "https://i.postimg.cc/L8cgzwG7/myrobinid-logo.jpg",
     desc: [
       "Overseen end-to-end recruitment for clients in logistics & transport sectors.",
-      "Analyzed data to provide actionable insights for clients.",
+      "Built and delivered weekly data-driven reports to clients, providing actionable hiring insights that improved sourcing strategy."
     ],
   },
   {
@@ -111,8 +111,8 @@ export const experienceData = [
     location: "Yogyakarta (Onsite)",
     logo: "https://i.postimg.cc/FzTJ3R4v/swamandiri-logo.jpg",
     desc: [
-      "Achieved fulfillment target of 200 agents within 3 months for an outbound call center project.",
-      "Collaborated with vocational schools and Dinas Ketenagakerjaan for sourcing.",
+    "Successfully fulfilled a target of 200 call center agents within 3 months, achieving 100% fulfillment rate ahead of deadline.",
+    "Built sourcing pipelines through partnerships with 10+ vocational schools and local Dinas Ketenagakerjaan."
     ],
   },
 ];
