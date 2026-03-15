@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   // Judul di Tab Browser
   title: {
-    default: "Akbar Wahyu Adi | Human Resourcees & Psychologist",
+    default: "Akbar Wahyu Adi | Human Resources & Psychologist",
     template: "%s | Akbar Wahyu Adi",
   },
   // Deskripsi untuk Google Search
