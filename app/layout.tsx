@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers"; // Pastikan file ini memang ada di project Anda ya
+import { Providers } from "./providers"; // Pastikan file providers.tsx ada di project Anda
 
 const inter = Inter({ subsets: ["latin"] });
 
 // --- KONFIGURASI SEO (METADATA) ---
 export const metadata: Metadata = {
+  // Wajib: Fondasi URL untuk semua aset dan routing agar Google tidak bingung
+  metadataBase: new URL("https://akbarwah.vercel.app"),
+
   // Judul di Tab Browser
   title: {
-    default: "Akbar Wahyu Adi | Human Resources & Psychologist",
+    default: "Akbar Wahyu Adi | HR Professional & Psychologist",
     template: "%s | Akbar Wahyu Adi",
   },
+  
   // Deskripsi untuk Google Search
   description: "Portfolio of Akbar Wahyu Adi. An HR Professional and Psychologist based in Yogyakarta, specializing in Recruitment, Psychological Assessment, and People Development.",
   
+  // Verifikasi Google Search Console
   verification: {
     google: "HMoRwMS8qnGYF6u1qZOT1qkYppGHsVTfbOAZDX5jv98",
   },
@@ -40,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Akbar Wahyu Adi | HR Professional & Psychologist",
     description: "Merging Psychological Insights with Strategic HR to build stronger teams. Available for Full-time, Freelance, and Projects.",
-    url: "https://portfolio-akbar.vercel.app", // Ingat untuk ganti jika pakai custom domain
+    url: "https://akbarwah.vercel.app", // Sudah disamakan dengan sitemap
     siteName: "Akbar Wahyu Adi Portfolio",
     images: [
       {

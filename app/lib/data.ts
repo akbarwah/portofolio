@@ -135,7 +135,7 @@ export const educationData = [
 // --- TRAININGS & CERTIFICATIONS DATA ---
 export const trainingsData = [
   {
-    name: "Tester: AJT Cognitive Abilities Test",
+    name: "Tester: AJT Cognitive Ability Test",
     issuer: "Universitas Gadjah Mada",
     year: "2025",
     url: "https://drive.google.com/file/d/1oZmpqpQ2oTlfuSfeVQmewzSdsIYAEtwx/view?usp=sharing",

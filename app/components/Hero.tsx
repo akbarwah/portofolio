@@ -31,7 +31,7 @@ export default function Hero() {
             Akbar Wahyu Adi
           </h1>
 <h2 className="text-xl md:text-2xl font-semibold text-teal-600 dark:text-teal-400 mb-6 tracking-wide">
-  HR Professional · Licensed General Psychologist
+  HR Professional · General Psychologist
 </h2>
 <div className="flex flex-col sm:flex-row gap-4 justify-center">
   <a href="#contact" className="px-8 py-4 bg-slate-900 dark:bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-700 dark:hover:bg-teal-500 transition-all shadow-lg hover:shadow-teal-200/50 dark:hover:shadow-teal-900/50 flex items-center justify-center gap-2 transform hover:-translate-y-1 active:scale-95">
