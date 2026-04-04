@@ -1,10 +1,4 @@
 @import "tailwindcss";
 @custom-variant dark (&:is(.dark *));
 
-/* Kita hapus pengaturan warna bawaan Next.js 
-   karena warnanya sudah kita atur langsung di page.tsx 
-   menggunakan class Tailwind (bg-slate-50 dark:bg-slate-950) */
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* Font diatur oleh next/font (Inter) via className di layout.tsx */
