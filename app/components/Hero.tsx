@@ -13,20 +13,20 @@ export default function Hero() {
           <div className="mb-8 flex justify-center">
             <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden bg-slate-200 dark:bg-slate-800 relative ring-4 ring-teal-50 dark:ring-teal-900/30">
               <Image
-                src="https://i.postimg.cc/RVCYBbpn/DSC07063-(4)-(1).jpg"
+                src="https://i.postimg.cc/WpS7jyct/Gemini-Generated-Image-wguedjwguedjwgue.png"
                 alt="Akbar Wahyu Adi"
                 fill
                 className="object-cover"
-                style={{ objectPosition: "60% 35%", transform: "scale(1.5)" }}
+                style={{ objectPosition: "100% 4%", transform: "scale(1)" }}
                 priority
               />
             </div>
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold mb-4 text-slate-900 dark:text-white tracking-tight leading-tight transition-colors">
-            Akbar Wahyu Adi
+            Akbar Wahyu Adi P
           </h1>
           <h2 className="text-xl md:text-2xl font-semibold text-teal-600 dark:text-teal-400 mb-6 tracking-wide">
-            HR Professional · General Psychologist
+            Human Resources · General Psychologist
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
