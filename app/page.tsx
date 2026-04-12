@@ -2,6 +2,7 @@ import Navbar from "@/app/components/Navbar";
 import Hero from "@/app/components/Hero";
 import About from "@/app/components/About";
 import Services from "@/app/components/Services";
+import FeaturedProject from "@/app/components/FeaturedProject";
 import Experience from "@/app/components/Experience";
 import Education from "@/app/components/Education";
 import Contact from "@/app/components/Contact";
@@ -13,6 +14,7 @@ export default function Portfolio() {
       <Hero />
       <About />
       <Services />
+      <FeaturedProject />
       <Experience />
       <Education />
       <Contact />

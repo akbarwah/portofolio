@@ -13,11 +13,11 @@ export default function Hero() {
           <div className="mb-8 flex justify-center">
             <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden bg-slate-200 dark:bg-slate-800 relative ring-4 ring-teal-50 dark:ring-teal-900/30">
               <Image
-                src="https://i.postimg.cc/WpS7jyct/Gemini-Generated-Image-wguedjwguedjwgue.png"
+                src="https://i.postimg.cc/wM156Czs/Akbar-Wahyu-Photo.png"
                 alt="Akbar Wahyu Adi"
                 fill
                 className="object-cover"
-                style={{ objectPosition: "100% 4%", transform: "scale(1)" }}
+                style={{ objectPosition: "80% 15%", transform: "scale(1.4)" }}
                 priority
               />
             </div>

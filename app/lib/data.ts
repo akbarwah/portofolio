@@ -4,8 +4,8 @@
 export const navLinks = [
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
+  { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
-  { name: "Education", href: "#education" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -50,6 +50,51 @@ export const servicesData = [
   },
 ];
 
+// --- FEATURED PROJECTS DATA ---
+export const projectsData = [
+  {
+    title: "HRIS & Operations Platform",
+    subtitle: "Tamtech International",
+    year: "2025",
+    status: "In Production",
+    logo: "https://i.postimg.cc/sf4P3jbM/tamtech-international-logo.jpg",
+    description:
+      "Designed, built, and deployed a comprehensive full-stack HRIS to digitize and centralize the entire HR operations lifecycle. The system replaced scattered spreadsheets and manual workflows, providing real-time workforce analytics, automated compliance alerts, and a dedicated Executive Dashboard for leadership. Built end-to-end as a solo initiative.",
+    highlights: [
+      { label: "Employees Managed", value: "60+" },
+      { label: "Core Modules", value: "9" },
+      { label: "Manual Process Reduced", value: "~70%" },
+    ],
+    features: [
+      "HR Analytics Dashboard with Workforce Insights",
+      "Recruitment Pipeline & Candidate Database with automated status sync",
+      "Employee Master Data with CSV bulk import/export & cascade operations",
+      "Time-Off Management with configurable leave types, approval, & balance tracking",
+      "Performance Review system with multi-period scoring & feedback",
+      "Payroll Master with salary breakdown, schedule alerts & readiness checklist",
+      "Asset Tracking for company device handover & offboarding audit",
+      "Contract Lifecycle (PKWT/PKWTT) with expiry alerts & compliance monitoring",
+      "Audit Logs: append-only journal for data governance & forensic tracing",
+      "Password-protected Executive Dashboard for leadership with auto-refresh & idle timeout",
+    ],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Vercel",
+    ],
+    role: "Solo Developer & Product Owner",
+    // Screenshot gallery — upload gambar ke Postimg lalu paste URL-nya di sini
+    // Contoh format: { url: "https://i.postimg.cc/xxx/screenshot.png", caption: "Dashboard Overview" }
+    screenshots: [
+      { url: "https://i.postimg.cc/FHxV9gcF/SS-HRIS-1.png", caption: "HR Analytics Dashboard" },
+      { url: "https://i.postimg.cc/rpmxq6MP/SS-HRIS-2.png", caption: "Recruitment Pipeline Board" },
+      { url: "https://i.postimg.cc/2SjBxpbd/Screenshot-2026-04-12-162057.png", caption: "Executive Dashboard" },
+    ],
+  },
+];
+
 // --- EXPERIENCE DATA ---
 export const experienceData = [
   {
@@ -62,6 +107,7 @@ export const experienceData = [
       "Manage end-to-end recruitment lifecycle for 20+ roles annually, applying strategy to improve hiring quality and reduce early turnover.",
       "Administer daily HR & GA operations for 60+ employees, including HRIS, attendance reporting, and office asset management.",
       "Enforce company SOPs and provide employee counseling to address performance gaps and resolve internal issues.",
+      "Developed and deployed an integrated HRIS utilizing AI development tools to eliminate administrative bottlenecks and centralize HR workflows.",
     ],
   },
   {
