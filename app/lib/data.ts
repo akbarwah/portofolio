@@ -25,7 +25,7 @@ export const skillsData = [
 export const servicesData = [
   {
     title: "Strategic Recruitment",
-    desc: "Get the right people, faster. I manage the full hiring cycle — from sourcing to onboarding — with a proven track record in high-volume and niche recruitment across industries.",
+    desc: "Get the right people, faster. I manage the full hiring cycle (from sourcing to onboarding) with a proven track record in high-volume and niche recruitment across industries.",
     iconName: "Users",
   },
   {
@@ -55,13 +55,13 @@ export const projectsData = [
   {
     title: "HRIS & Operations Platform",
     subtitle: "Tamtech International",
-    year: "2025",
-    status: "In Production",
+    year: "2026",
+    status: "Live",
     logo: "https://i.postimg.cc/sf4P3jbM/tamtech-international-logo.jpg",
     description:
-      "Designed, built, and deployed a comprehensive full-stack HRIS to digitize and centralize the entire HR operations lifecycle. The system replaced scattered spreadsheets and manual workflows, providing real-time workforce analytics, automated compliance alerts, and a dedicated Executive Dashboard for leadership. Built end-to-end as a solo initiative.",
+      "Designed, built, and deployed a comprehensive full-stack HRIS to digitize and centralize the entire HR operations lifecycle. The system replaced scattered spreadsheets and manual workflows, providing real-time workforce analytics, automated compliance alerts, and a dedicated Executive Dashboard for C-Level. Built end-to-end as a solo initiative.",
     highlights: [
-      { label: "Employees Managed", value: "60+" },
+      { label: "Employees Managed", value: "70+" },
       { label: "Core Modules", value: "9" },
       { label: "Manual Process Reduced", value: "~70%" },
     ],
@@ -69,20 +69,18 @@ export const projectsData = [
       "HR Analytics Dashboard with Workforce Insights",
       "Recruitment Pipeline & Candidate Database with automated status sync",
       "Employee Master Data with CSV bulk import/export & cascade operations",
-      "Time-Off Management with configurable leave types, approval, & balance tracking",
-      "Performance Review system with multi-period scoring & feedback",
+      "Time-Off Management with configurable leave types, approval, & balance",
+      "360 Degree Performance Review system with multi-period scoring & feedback",
       "Payroll Master with salary breakdown, schedule alerts & readiness checklist",
       "Asset Tracking for company device handover & offboarding audit",
       "Contract Lifecycle (PKWT/PKWTT) with expiry alerts & compliance monitoring",
       "Audit Logs: append-only journal for data governance & forensic tracing",
-      "Password-protected Executive Dashboard for leadership with auto-refresh & idle timeout",
+      "Password-protected Executive Dashboard for C-Level",
     ],
     techStack: [
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
-      "Supabase",
-      "Vercel",
     ],
     role: "Solo Developer & Product Owner",
     // Screenshot gallery — upload gambar ke Postimg lalu paste URL-nya di sini
@@ -90,7 +88,7 @@ export const projectsData = [
     screenshots: [
       { url: "https://i.postimg.cc/FHxV9gcF/SS-HRIS-1.png", caption: "HR Analytics Dashboard" },
       { url: "https://i.postimg.cc/rpmxq6MP/SS-HRIS-2.png", caption: "Recruitment Pipeline Board" },
-      { url: "https://i.postimg.cc/2SjBxpbd/Screenshot-2026-04-12-162057.png", caption: "Executive Dashboard" },
+      { url: "https://i.postimg.cc/JhKB8Vyz/Screenshot-2026-04-14-225347.png", caption: "Executive Dashboard" },
     ],
   },
 ];
