@@ -122,7 +122,7 @@ export const experienceData = [
   {
     role: "Sociology Teacher & School Counselor",
     company: "Husnul Khotimah Islamic Boarding School",
-    period: "Aug 2021 - Dec 2021",
+    period: "Apr 2022 - Dec 2022",
     location: "Kuningan (Onsite)",
     logo: "https://i.postimg.cc/90QDmhqp/1630595087692.jpg",
     desc: [
@@ -134,7 +134,7 @@ export const experienceData = [
   {
     role: "HR Operations Excellence",
     company: "MyRobin.ID",
-    period: "Apr 2022 - Dec 2022",
+    period: "Aug 2021 - Dec 2021",
     location: "Jakarta (Remote)",
     logo: "https://i.postimg.cc/L8cgzwG7/myrobinid-logo.jpg",
     desc: [
