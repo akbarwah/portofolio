@@ -21,11 +21,11 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 dark:text-white">About Me</h2>
             <div className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed space-y-6">
               <p>
-                I bridge the gap between human behavior and business strategy. As a Licensed General Psychologist combined with{" "}
-                <strong className="dark:text-white">4 years of hands-on HR experience</strong>, I bring a unique and analytical
-                perspective to talent management. My approach focuses on evidence-based{" "}
-                <strong>psychological assessment</strong> and strategic employee engagement to ensure organizations attract,
-                develop, and retain high-performing talent.
+                I bridge the gap between human behavior and sustainable success. As a Licensed Psychologist with{" "}
+                <strong className="dark:text-white">4 years of hands-on HR experience</strong>, I bring an analytical
+                and empathetic approach to people development. My work centers on evidence-based{" "}
+                psychological assessments, strategic employee engagement, and clinical counseling, ensuring
+                organizations build resilient teams while empowering individuals to thrive.
               </p>
             </div>
           </motion.div>

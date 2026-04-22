@@ -26,7 +26,7 @@ export default function Hero() {
             Akbar Wahyu Adi P
           </h1>
           <h2 className="text-xl md:text-2xl font-semibold text-teal-600 dark:text-teal-400 mb-6 tracking-wide">
-            Human Resources · General Psychologist
+            General Psychologist · Human Resources
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

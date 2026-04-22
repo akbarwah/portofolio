@@ -30,7 +30,6 @@ export default function Contact() {
         setErrorMsg("Ada masalah saat mengirim pesan. Silakan coba lagi.");
       }
     } catch (_error) {
-      // prefix underscore = intentionally unused, hanya handle side effect
       setIsSubmitting(false);
       setErrorMsg("Terjadi kesalahan koneksi. Periksa koneksi internet Anda.");
     }
@@ -57,16 +56,18 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
+              {/* REVISI HEADLINE: Lebih inklusif untuk organisasi maupun individu */}
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white leading-tight">
-                Ready to Elevate <br /> Your Team?
+                Let's Empower <br /> People & Organizations.
               </h2>
               <div className="text-slate-400 text-lg leading-relaxed space-y-4">
+                {/* REVISI DESKRIPSI: Memisahkan layanan HR Strategis dan Psikologi Praktis */}
                 <p>
-                  Whether you need a <strong>Strategic HR Partner</strong> for the long run, or an expert{" "}
-                  <strong>Consultant</strong> for specific recruitment &amp; assessment projects.
+                  Whether you're an organization seeking a <strong>Strategic HR Partner</strong> to optimize your workforce, or an individual looking for professional <strong>Psychological Counseling & Assessment</strong>.
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
-                  {["Full-time", "Freelance", "Project-based"].map((tag) => (
+                  {/* REVISI TAGS: Mengubah status kerja menjadi katalog layanan inti */}
+                  {["Fulltime", "Freelance", "Project-based"].map((tag) => (
                     <span
                       key={tag}
                       className="px-3 py-1 rounded-full bg-teal-900/50 border border-teal-700 text-teal-300 text-sm font-semibold cursor-default hover:bg-teal-900 transition-colors"
@@ -172,7 +173,6 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* Fix: Error state ditampilkan di UI, bukan alert() */}
                     {errorMsg && (
                       <motion.div
                         initial={{ opacity: 0, y: -8 }}

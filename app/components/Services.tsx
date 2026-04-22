@@ -7,18 +7,19 @@ import {
   ClipboardList,
   Briefcase,
   GraduationCap,
+  LineChart,
   type LucideIcon,
 } from "lucide-react";
 import { servicesData } from "@/app/lib/data";
 import { fadeInUp } from "@/app/lib/animations";
 
-// Icon mapping dikelola di komponen ini — data.ts bebas dari React component imports
 const iconMap: Record<string, LucideIcon> = {
   Users,
   Brain,
   ClipboardList,
   Briefcase,
   GraduationCap,
+  LineChart,
 };
 
 export default function Services() {
@@ -34,15 +35,14 @@ export default function Services() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">How I Can Help</h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Partnering to align the right talent with the right roles for growth.
+            Delivering strategic HR solutions for organizations and evidence-based psychological services for individuals.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+        {/* Struktur Grid disederhanakan: 1 kolom di HP, 2 di Tablet, 3 di Desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {servicesData.map((service, index) => {
             const Icon = iconMap[service.iconName];
-            const desktopSpan = index < 3 ? "lg:col-span-2" : "lg:col-span-3";
-            const tabletSpan = index === 4 ? "md:col-span-2" : "md:col-span-1";
 
             return (
               <motion.div
@@ -51,7 +51,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`p-8 bg-white dark:bg-slate-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-teal-500 dark:border-slate-800 dark:hover:border-teal-500 group ${desktopSpan} ${tabletSpan}`}
+                className="p-8 bg-white dark:bg-slate-900 rounded-2xl shadow-sm dark:shadow-none hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-teal-500 dark:border-slate-800 dark:hover:border-teal-500 group"
               >
                 <div className="w-14 h-14 bg-teal-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-100 dark:group-hover:bg-teal-900/30 transition-colors">
                   {Icon && <Icon className="text-teal-600 dark:text-teal-400" size={28} />}

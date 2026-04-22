@@ -11,42 +11,47 @@ export const navLinks = [
 
 // --- SKILLS / CORE COMPETENCIES DATA ---
 export const skillsData = [
-  "End-to-end Recruitment",
-  "Psychological Assessment",
-  "Talent Mapping",
-  "Learning & Development",
+  "Talent Acquisition & Recruitment",
+  "Clinical & Industrial Assessment",
   "Psychological Counseling",
-  "Performance Management",
-  "HRIS Management",
+  "Learning & People Development",
+  "Employee Relations & Engagement", // Menggambarkan kemampuan menangani konflik internal
+  "Performance Appraisal Systems",
+  "HR Automation & Digitalization",
 ];
 
 // --- SERVICES DATA ---
 // iconName merujuk ke nama icon dari lucide-react (resolved di Services.tsx)
 export const servicesData = [
   {
-    title: "Strategic Recruitment",
-    desc: "Get the right people, faster. I manage the full hiring cycle (from sourcing to onboarding) with a proven track record in high-volume and niche recruitment across industries.",
-    iconName: "Users",
-  },
-  {
-    title: "Psychological Assessment",
-    desc: "Make confident hiring decisions. Conducting comprehensive evaluations for hiring, talent mapping, and leadership promotion using validated psychometrics and behavioral insights.",
-    iconName: "Brain",
-  },
-  {
-    title: "HR Operations",
-    desc: "Keep your HR running smoothly. From HRIS administration and attendance systems to onboarding workflows, I ensure compliance and operational efficiency.",
-    iconName: "ClipboardList",
-  },
-  {
-    title: "Training & People Development",
-    desc: "Unlock your team's full potential. I design corporate training programs, facilitate psychological counseling, and build engagement strategies that stick.",
     iconName: "Briefcase",
+    title: "HR Consulting & Systems",
+    desc: "Designing customized HR frameworks, digitizing workflows, and building scalable organizational structures for sustained growth.",
   },
   {
-    title: "Educational & Personal Assessment",
-    desc: "Support growth at every stage. I provide IQ testing, academic talent mapping (penjurusan), and individual counseling for students and professionals alike.",
-    iconName: "GraduationCap",
+    iconName: "ClipboardList",
+    title: "Corporate Assessment",
+    desc: "Conducting comprehensive industrial assessments to uncover hidden potential and ensure the right talent fit for organizations.",
+  },
+  {
+    iconName: "Users",
+    title: "Talent Acquisition",
+    desc: "Managing the full recruitment lifecycle with psychological precision to connect organizations with high-performing professionals.",
+  },
+  {
+    iconName: "LineChart", // Ikon baru untuk People Development
+    title: "People Development",
+    desc: "Creating targeted training programs and performance management strategies to foster continuous learning and employee growth.",
+  },
+  {
+    iconName: "Brain",
+    title: "Clinical Counseling",
+    desc: "Providing professional psychological support to help individuals navigate personal challenges, manage stress, and build mental resilience.",
+  },
+  {
+    iconName: "GraduationCap", // Sangat cocok untuk konteks akademik
+    title: "Educational Psychology",
+    desc: "Providing IQ testing, academic talent mapping, and individual counseling to help students navigate their potential and future paths.",
   },
 ];
 
