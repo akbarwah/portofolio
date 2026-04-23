@@ -36,7 +36,7 @@ export default function Hero() {
               <Send size={18} /> Let&apos;s Collaborate
             </a>
             <a
-              href="https://drive.google.com/file/d/1yRs_rHPDrZC_ZQMzbGTcyN0LqSWHZ80Z/view?usp=sharing"
+              href="https://drive.google.com/file/d/1H1c-ua8KTgDNlUHwdhp8pIz8rOMdAncW/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 rounded-xl font-bold hover:border-teal-400 dark:hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md active:scale-95"

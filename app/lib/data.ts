@@ -39,7 +39,7 @@ export const servicesData = [
     desc: "Managing the full recruitment lifecycle with psychological precision to connect organizations with high-performing professionals.",
   },
   {
-    iconName: "LineChart", // Ikon baru untuk People Development
+    iconName: "LineChart",
     title: "People Development",
     desc: "Creating targeted training programs and performance management strategies to foster continuous learning and employee growth.",
   },
@@ -49,8 +49,8 @@ export const servicesData = [
     desc: "Providing professional psychological support to help individuals navigate personal challenges, manage stress, and build mental resilience.",
   },
   {
-    iconName: "GraduationCap", // Sangat cocok untuk konteks akademik
-    title: "Educational Psychology",
+    iconName: "GraduationCap",
+    title: "Academic Talent Assessment",
     desc: "Providing IQ testing, academic talent mapping, and individual counseling to help students navigate their potential and future paths.",
   },
 ];
