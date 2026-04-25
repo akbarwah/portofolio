@@ -26,32 +26,33 @@ export const servicesData = [
   {
     iconName: "Briefcase",
     title: "HR Consulting & Systems",
-    desc: "Designing customized HR frameworks, digitizing workflows, and building scalable organizational structures for sustained growth.",
+    desc: "Designing tailored SOPs, digitizing workflows, and building scalable organizational structures for sustained growth.",
   },
   {
     iconName: "ClipboardList",
     title: "Corporate Assessment",
-    desc: "Conducting comprehensive industrial assessments to uncover hidden potential and ensure the right talent fit for organizations.",
+    desc: "Executing comprehensive assessments for employee potential reviews, promotion assessments, and leadership succession planning.",
   },
   {
     iconName: "Users",
     title: "Talent Acquisition",
-    desc: "Managing the full recruitment lifecycle with psychological precision to connect organizations with high-performing professionals.",
+    desc: "Executing recruitment processes, targeted headhunting, and strategic talent sourcing to secure top-tier professionals.",
   },
   {
     iconName: "LineChart",
     title: "People Development",
-    desc: "Creating targeted training programs and performance management strategies to foster continuous learning and employee growth.",
+    desc: "Facilitating targeted training programs, coaching, and performance management strategies to boost employee engagement and retention.",
   },
   {
     iconName: "Brain",
     title: "Clinical Counseling",
-    desc: "Providing professional psychological support to help individuals navigate personal challenges, manage stress, and build mental resilience.",
+    desc: "Providing professional psychological support to help individuals to navigate personal challenges, manage stress, and build mental resilience."
+    ,
   },
   {
     iconName: "GraduationCap",
-    title: "Academic Talent Assessment",
-    desc: "Providing IQ testing, academic talent mapping, and individual counseling to help students navigate their potential and future paths.",
+    title: "Academic Assessment",
+    desc: "Providing IQ tests, school readiness assessments, talent mapping, and academic major selection to guide students' futures.",
   },
 ];
 
