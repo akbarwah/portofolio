@@ -89,12 +89,11 @@ export const projectsData = [
       "Tailwind CSS",
     ],
     role: "Solo Developer & Product Owner",
-    // Screenshot gallery — upload gambar ke Postimg lalu paste URL-nya di sini
-    // Contoh format: { url: "https://i.postimg.cc/xxx/screenshot.png", caption: "Dashboard Overview" }
+    // Screenshot gallery — diload langsung dari folder /public demi performa maksimal
     screenshots: [
-      { url: "https://i.postimg.cc/FHxV9gcF/SS-HRIS-1.png", caption: "HR Analytics Dashboard" },
-      { url: "https://i.postimg.cc/rpmxq6MP/SS-HRIS-2.png", caption: "Recruitment Pipeline Board" },
-      { url: "https://i.postimg.cc/JhKB8Vyz/Screenshot-2026-04-14-225347.png", caption: "Executive Dashboard" },
+      { url: "/images/projects/hris-analytics.png", caption: "HR Analytics Dashboard" },
+      { url: "/images/projects/hris-pipeline.png", caption: "Recruitment Pipeline Board" },
+      { url: "/images/projects/hris-executive.png", caption: "Executive Dashboard" },
     ],
   },
 ];
