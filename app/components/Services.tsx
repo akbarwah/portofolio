@@ -34,7 +34,7 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white">How I Can Help</h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto md:whitespace-nowrap">
             Delivering strategic HR solutions for organizations and psychological services for individuals.
           </p>
         </motion.div>

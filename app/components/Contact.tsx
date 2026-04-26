@@ -29,7 +29,7 @@ export default function Contact() {
         setIsSubmitting(false);
         setErrorMsg("Ada masalah saat mengirim pesan. Silakan coba lagi.");
       }
-    } catch (_error) {
+    } catch {
       setIsSubmitting(false);
       setErrorMsg("Terjadi kesalahan koneksi. Periksa koneksi internet Anda.");
     }
@@ -58,12 +58,12 @@ export default function Contact() {
             <div>
               {/* REVISI HEADLINE: Lebih inklusif untuk organisasi maupun individu */}
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white leading-tight">
-                Let's Empower <br /> People & Organizations.
+                Let&apos;s Empower <br /> People & Organizations.
               </h2>
               <div className="text-slate-400 text-lg leading-relaxed space-y-4">
                 {/* REVISI DESKRIPSI: Memisahkan layanan HR Strategis dan Psikologi Praktis */}
                 <p>
-                  Whether you're an organization seeking a <strong>Strategic HR Partner</strong> to optimize your workforce, or an individual looking for professional <strong>Psychological Counseling & Assessment</strong>.
+                  Whether you&apos;re an organization seeking a <strong>Strategic HR Partner</strong> to optimize your workforce, or an individual looking for professional <strong>Psychological Counseling & Assessment</strong>.
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
                   {/* REVISI TAGS: Mengubah status kerja menjadi katalog layanan inti */}

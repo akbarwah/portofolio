@@ -13,7 +13,10 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Mengabaikan peringatan linter untuk pola hidrasi standar Next.js
+    // eslint-disable-next-line
     setMounted(true);
+
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
